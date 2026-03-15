@@ -1,0 +1,200 @@
+Start testing: Mar 15 10:04 UTC
+----------------------------------------------------------
+1/3 Testing: spsc_ring_buffer
+1/3 Test: spsc_ring_buffer
+Command: "/home/jakhardev2904/projects/ultrafast-feed/build/tests/test_spsc_ring_buffer"
+Directory: /home/jakhardev2904/projects/ultrafast-feed/build/tests
+"spsc_ring_buffer" start time: Mar 15 10:04 UTC
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+[==========] Running 12 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 12 tests from SpscRingBuffer
+[ RUN      ] SpscRingBuffer.InitiallyEmpty
+[       OK ] SpscRingBuffer.InitiallyEmpty (0 ms)
+[ RUN      ] SpscRingBuffer.PushPopRoundTrip
+[       OK ] SpscRingBuffer.PushPopRoundTrip (0 ms)
+[ RUN      ] SpscRingBuffer.PushMoveOverload
+[       OK ] SpscRingBuffer.PushMoveOverload (0 ms)
+[ RUN      ] SpscRingBuffer.FullRingRejectsPush
+[       OK ] SpscRingBuffer.FullRingRejectsPush (0 ms)
+[ RUN      ] SpscRingBuffer.EmptyRingReturnsNullopt
+[       OK ] SpscRingBuffer.EmptyRingReturnsNullopt (0 ms)
+[ RUN      ] SpscRingBuffer.PeekDoesNotConsume
+[       OK ] SpscRingBuffer.PeekDoesNotConsume (0 ms)
+[ RUN      ] SpscRingBuffer.PeekOnEmptyReturnsNullptr
+[       OK ] SpscRingBuffer.PeekOnEmptyReturnsNullptr (0 ms)
+[ RUN      ] SpscRingBuffer.WrapAround
+[       OK ] SpscRingBuffer.WrapAround (0 ms)
+[ RUN      ] SpscRingBuffer.SizeTracking
+[       OK ] SpscRingBuffer.SizeTracking (0 ms)
+[ RUN      ] SpscRingBuffer.FillToCapacityAndDrain
+[       OK ] SpscRingBuffer.FillToCapacityAndDrain (0 ms)
+[ RUN      ] SpscRingBuffer.TriviallyCopiableStruct
+[       OK ] SpscRingBuffer.TriviallyCopiableStruct (0 ms)
+[ RUN      ] SpscRingBuffer.SpscThroughputAndCorrectness
+[       OK ] SpscRingBuffer.SpscThroughputAndCorrectness (2 ms)
+[----------] 12 tests from SpscRingBuffer (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 12 tests from 1 test suite ran. (2 ms total)
+[  PASSED  ] 12 tests.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"spsc_ring_buffer" end time: Mar 15 10:04 UTC
+"spsc_ring_buffer" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: umem
+2/3 Test: umem
+Command: "/home/jakhardev2904/projects/ultrafast-feed/build/tests/test_umem"
+Directory: /home/jakhardev2904/projects/ultrafast-feed/build/tests
+"umem" start time: Mar 15 10:04 UTC
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+[==========] Running 11 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 3 tests from UmemConfig
+[ RUN      ] UmemConfig.DefaultValues
+[       OK ] UmemConfig.DefaultValues (0 ms)
+[ RUN      ] UmemConfig.RegionSizeArithmetic
+[       OK ] UmemConfig.RegionSizeArithmetic (0 ms)
+[ RUN      ] UmemConfig.FrameOffsetArithmetic
+[       OK ] UmemConfig.FrameOffsetArithmetic (0 ms)
+[----------] 3 tests from UmemConfig (0 ms total)
+
+[----------] 8 tests from Umem
+[ RUN      ] Umem.ConstructionDefaultConfig
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_umem.cpp:54: Skipped
+Requires CAP_NET_ADMIN; re-run as root
+
+[  SKIPPED ] Umem.ConstructionDefaultConfig (0 ms)
+[ RUN      ] Umem.FramePtrBounds
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_umem.cpp:68: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] Umem.FramePtrBounds (0 ms)
+[ RUN      ] Umem.FrameOffsetMatchesPtr
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_umem.cpp:80: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] Umem.FrameOffsetMatchesPtr (0 ms)
+[ RUN      ] Umem.MoveConstructor
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_umem.cpp:90: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] Umem.MoveConstructor (0 ms)
+[ RUN      ] Umem.MoveAssignment
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_umem.cpp:107: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] Umem.MoveAssignment (0 ms)
+[ RUN      ] Umem.AllocFreeFrame
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_umem.cpp:120: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] Umem.AllocFreeFrame (0 ms)
+[ RUN      ] Umem.AllocAllFramesThenExhausted
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_umem.cpp:134: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] Umem.AllocAllFramesThenExhausted (0 ms)
+[ RUN      ] Umem.PopulateFillRing
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_umem.cpp:160: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] Umem.PopulateFillRing (0 ms)
+[----------] 8 tests from Umem (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 11 tests from 2 test suites ran. (0 ms total)
+[  PASSED  ] 3 tests.
+[  SKIPPED ] 8 tests, listed below:
+[  SKIPPED ] Umem.ConstructionDefaultConfig
+[  SKIPPED ] Umem.FramePtrBounds
+[  SKIPPED ] Umem.FrameOffsetMatchesPtr
+[  SKIPPED ] Umem.MoveConstructor
+[  SKIPPED ] Umem.MoveAssignment
+[  SKIPPED ] Umem.AllocFreeFrame
+[  SKIPPED ] Umem.AllocAllFramesThenExhausted
+[  SKIPPED ] Umem.PopulateFillRing
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"umem" end time: Mar 15 10:04 UTC
+"umem" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/3 Testing: xdp_socket
+3/3 Test: xdp_socket
+Command: "/home/jakhardev2904/projects/ultrafast-feed/build/tests/test_xdp_socket"
+Directory: /home/jakhardev2904/projects/ultrafast-feed/build/tests
+"xdp_socket" start time: Mar 15 10:04 UTC
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+[==========] Running 7 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 7 tests from XdpSocket
+[ RUN      ] XdpSocket.ConstructionFailsOnBadInterface
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_xdp_socket.cpp:43: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] XdpSocket.ConstructionFailsOnBadInterface (0 ms)
+[ RUN      ] XdpSocket.ValidAfterConstruction
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_xdp_socket.cpp:54: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] XdpSocket.ValidAfterConstruction (0 ms)
+[ RUN      ] XdpSocket.MoveConstructor
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_xdp_socket.cpp:65: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] XdpSocket.MoveConstructor (0 ms)
+[ RUN      ] XdpSocket.MoveAssignment
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_xdp_socket.cpp:80: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] XdpSocket.MoveAssignment (0 ms)
+[ RUN      ] XdpSocket.RxBurstReturnsZeroWithNoTraffic
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_xdp_socket.cpp:110: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] XdpSocket.RxBurstReturnsZeroWithNoTraffic (0 ms)
+[ RUN      ] XdpSocket.TxBurstWithNoFrames
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_xdp_socket.cpp:126: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] XdpSocket.TxBurstWithNoFrames (0 ms)
+[ RUN      ] XdpSocket.TxCompleteWithEmptyCompletionRing
+/home/jakhardev2904/projects/ultrafast-feed/tests/test_xdp_socket.cpp:138: Skipped
+Requires CAP_NET_ADMIN
+
+[  SKIPPED ] XdpSocket.TxCompleteWithEmptyCompletionRing (0 ms)
+[----------] 7 tests from XdpSocket (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 7 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 0 tests.
+[  SKIPPED ] 7 tests, listed below:
+[  SKIPPED ] XdpSocket.ConstructionFailsOnBadInterface
+[  SKIPPED ] XdpSocket.ValidAfterConstruction
+[  SKIPPED ] XdpSocket.MoveConstructor
+[  SKIPPED ] XdpSocket.MoveAssignment
+[  SKIPPED ] XdpSocket.RxBurstReturnsZeroWithNoTraffic
+[  SKIPPED ] XdpSocket.TxBurstWithNoFrames
+[  SKIPPED ] XdpSocket.TxCompleteWithEmptyCompletionRing
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"xdp_socket" end time: Mar 15 10:04 UTC
+"xdp_socket" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 15 10:04 UTC
