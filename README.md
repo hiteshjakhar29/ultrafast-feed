@@ -79,7 +79,9 @@ The modulo operation needed to wrap ring indices (`index % N`) compiles to a div
 
 ## Benchmarks
 
-Measured on a **GCP e2-standard-4 VM** (4 vCPUs, Intel Broadwell, 16 GB RAM). Build: `Release` (`-O3 -march=native -ffast-math`, LTO). Bare-metal x86_64 numbers are in progress and will replace these.
+### SPSC Ring Buffer (microbenchmark)
+
+Ring-buffer-only numbers — no networking, no XDP. Measured on a **GCP e2-standard-4 VM** (4 vCPUs, Intel Broadwell, 16 GB RAM). Build: `Release` (`-O3 -march=native -ffast-math`, LTO).
 
 | Benchmark | Mean Latency | Notes |
 |---|---|---|
@@ -88,7 +90,25 @@ Measured on a **GCP e2-standard-4 VM** (4 vCPUs, Intel Broadwell, 16 GB RAM). Bu
 | Throughput | **14.1 M items/sec** | Sustained producer→consumer |
 | `size()` check | **0.395 ns** | Atomic load, no contention |
 
-> These numbers reflect the ring buffer in isolation. End-to-end feed latency (NIC to consumer) is dominated by the AF_XDP path and will be reported separately with bare-metal measurements on a dedicated server.
+These numbers isolate the ring buffer data structure. End-to-end latency including the AF_XDP path is measured separately below.
+
+---
+
+### End-to-End AF_XDP Latency
+
+**Platform:** GCP e2-standard-4 VM, Ubuntu 24.04, x86_64
+**Path:** `SyntheticSender` (sender_ns / veth0) → veth pair → AF_XDP (veth1) → `SpscRingBuffer` → consumer pop
+**Test:** 1000 packets, inject timestamp → ring pop, 0 dropped, 0 lost
+
+| Percentile | Latency |
+|---|---|
+| min    |  18.36 µs |
+| p50    |  79.70 µs |
+| p99    | 160.42 µs |
+| p99.9  | 209.72 µs |
+| max    | 250.12 µs |
+
+> These are VM numbers over a virtual ethernet pair (veth). The veth path traverses the kernel's virtual switching layer and shares CPU resources with other VM workloads, which accounts for the ~80 µs p50. On bare-metal x86_64 with a real NIC supporting XDP native mode (e.g. Intel i40e, Mellanox ConnectX), p50 is expected to drop to low single-digit microseconds — the XDP redirect bypasses the entire kernel network stack and DMA delivers frames directly into UMEM without a copy.
 
 ---
 
@@ -166,4 +186,4 @@ AF_XDP is a Linux kernel interface. This project does not build on macOS or Wind
 - [ ] Multi-queue support via multiple `XdpSocket` instances pinned to separate RX queues
 - [ ] BPF program for hardware-level flow steering by UDP port / multicast group
 - [ ] NUMA-aware UMEM allocation for multi-socket servers
-- [ ] Integration test with synthetic market data feed over loopback XDP
+- [x] Integration test with synthetic market data feed over veth / network namespace
