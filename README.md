@@ -99,7 +99,7 @@ sudo apt install cmake ninja-build libbpf-dev libxdp-dev
 
 **Clone and build**
 ```bash
-git clone https://github.com/jakhardev2904/ultrafast-feed.git
+git clone https://github.com/hiteshjakhar29/ultrafast-feed.git
 cd ultrafast-feed
 cmake -B build -DCMAKE_BUILD_TYPE=Release -G Ninja
 cmake --build build
