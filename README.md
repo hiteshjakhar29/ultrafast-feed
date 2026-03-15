@@ -8,6 +8,18 @@ Built to demonstrate the low-level primitives that matter in production HFT infr
 
 ---
 
+## Pipeline
+
+```
+NIC → AF_XDP → FeedEvent → SHM → SignalEngine → AnomalyDetector
+```
+
+This project is the packet capture and feed parsing layer. A bridge thread forwards `FeedEvent`s from `SpscRingBuffer` into a POSIX shared memory ring, where [lattice-ipc](https://github.com/hiteshjakhar29/lattice-ipc) picks them up for signal computation and spoofing detection.
+
+See [lattice-ipc](https://github.com/hiteshjakhar29/lattice-ipc) for the signal processing and anomaly detection layer. See [docs/pipeline.md](docs/pipeline.md) for the full end-to-end diagram and integration code.
+
+---
+
 ## Architecture
 
 ```
