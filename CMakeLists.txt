@@ -76,6 +76,7 @@ add_subdirectory(src)
 add_subdirectory(tests)
 add_subdirectory(bench)
 add_subdirectory(docs)
+add_subdirectory(tools)
 
 # ── Summary ───────────────────────────────────────────────────────────────────
 message(STATUS "[ultrafast-feed] libbpf  ${LIBBPF_VERSION}")

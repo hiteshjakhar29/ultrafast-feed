@@ -6,7 +6,7 @@
 #   ctest -R spsc_ring_buffer   # run only the ring buffer tests
 #   ./tests/test_umem           # run umem tests directly (useful with gdb)
 
-foreach(_test spsc_ring_buffer umem xdp_socket)
+foreach(_test spsc_ring_buffer umem xdp_socket feed_handler)
     add_executable(test_${_test} test_${_test}.cpp)
 
     target_link_libraries(test_${_test} PRIVATE

@@ -1,6 +1,7 @@
 add_library(ultrafast_core STATIC
     umem.cpp
     xdp_socket.cpp
+    feed_handler.cpp
 )
 
 # PUBLIC: consumers of ultrafast_core automatically get ${PROJECT_SOURCE_DIR}/include
