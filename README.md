@@ -1,3 +1,5 @@
+[![CI](https://github.com/hiteshjakhar29/ultrafast-feed/actions/workflows/ci.yml/badge.svg)](https://github.com/hiteshjakhar29/ultrafast-feed/actions/workflows/ci.yml)
+
 # ultrafast-feed
 
 A C++20 market data feed handler built on AF_XDP kernel bypass. Raw Ethernet frames arrive from the NIC directly into a user-space memory region — no kernel TCP/IP stack, no socket buffer copies, no `recv()` system call on the hot path. Parsed packets are forwarded to a lock-free SPSC ring buffer for consumption by a signal handler or order engine.
