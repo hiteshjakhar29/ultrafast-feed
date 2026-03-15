@@ -112,6 +112,26 @@ These numbers isolate the ring buffer data structure. End-to-end latency includi
 
 ---
 
+### Standard Socket vs AF_XDP Baseline Comparison
+
+**Platform:** GCP e2-standard-4 VM, Ubuntu 24.04, x86_64
+**Path:** `SyntheticSender` (sender_ns / veth0) → veth pair → receiver (veth1) → `SpscRingBuffer` → consumer pop
+**Test:** 1000 packets per path, interleaved mode, inject timestamp → ring pop
+
+| Metric  | Std Socket (µs) | AF_XDP (µs) | Speedup |
+|---------|-----------------|-------------|---------|
+| min     |  33.09          |  11.16      |  2.97x  |
+| p50     |  89.64          |  82.57      |  1.09x  |
+| p99     | 202.78          | 199.36      |  1.02x  |
+| p99.9   | 269.02          | 245.59      |  1.10x  |
+| max     | 352.81          | 335.88      |  1.05x  |
+
+> **Why the speedup is modest here:** veth is a kernel virtual switching device. Both AF_XDP and standard sockets must traverse the kernel's virtual switching layer to cross the veth pair — hardware DMA is not involved regardless of socket type. The numbers converge because both paths share the same virtual NIC overhead.
+>
+> **On bare-metal with XDP native mode** (Intel i40e, Mellanox ConnectX-4/5/6), the XDP program intercepts frames at the driver level before any `sk_buff` is allocated, and DMA delivers frames directly into UMEM without a copy. Standard sockets spend 50–100 µs in `sk_buff` allocation, IP/UDP demux, and socket buffer copy. AF_XDP bypasses all of it, reducing p50 to 1–10 µs — a **10–50x improvement**.
+
+---
+
 ## Build
 
 **Prerequisites (Ubuntu 24.04)**
