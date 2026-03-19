@@ -6,6 +6,18 @@
 #   ctest -R spsc_ring_buffer   # run only the ring buffer tests
 #   ./tests/test_umem           # run umem tests directly (useful with gdb)
 
+# ── test_replay ───────────────────────────────────────────────────────────────
+# PcapWriter/PcapReader are header-only file-I/O utilities — no libxdp needed.
+add_executable(test_replay test_replay.cpp)
+target_link_libraries(test_replay PRIVATE
+    ultrafast_compile_options
+    GTest::gtest_main
+)
+target_include_directories(test_replay PRIVATE
+    ${PROJECT_SOURCE_DIR}/include
+)
+add_test(NAME replay COMMAND test_replay)
+
 foreach(_test spsc_ring_buffer umem xdp_socket feed_handler)
     add_executable(test_${_test} test_${_test}.cpp)
 

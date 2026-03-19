@@ -14,3 +14,13 @@ target_include_directories(test_sender PRIVATE
 target_link_libraries(test_sender PRIVATE
     ultrafast_compile_options
 )
+
+# ── replay_feed ────────────────────────────────────────────────────────────────
+# PcapWriter/PcapReader are header-only; no libxdp dependency.
+add_executable(replay_feed replay_feed.cpp)
+target_include_directories(replay_feed PRIVATE
+    ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(replay_feed PRIVATE
+    ultrafast_compile_options
+)
